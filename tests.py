@@ -1,5 +1,6 @@
 from os.path import isdir
 from sys import exit
+from unittest.mock import Mock
 
 import pytest
 
@@ -40,6 +41,38 @@ def test_resolver__import_error():
 
     with pytest.raises(ImportError):
         func('os.not_found')
+
+
+def test_resolver__relative():
+    self = Mock(name='self')
+    self.pkg = 'os.path'
+
+    @resolver('obj', attr_package='pkg')
+    def func(self, obj):
+        return obj
+
+    assert func(self, '.isdir') is isdir
+
+
+def test_resolver__relative_value_error():
+    @resolver('obj', attr_package=None)
+    def func(obj):
+        pass
+
+    with pytest.raises(ValueError):
+        func('.tests')
+
+
+def test_resolver__relative_import_error():
+    self = Mock(name='self')
+    self.pkg = 'os.path'
+
+    @resolver('obj', attr_package='pkg')
+    def func(self, obj):
+        pass
+
+    with pytest.raises(ImportError):
+        func(self, '.not_found')
 
 
 def test_resolver__declare_error():
