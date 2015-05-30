@@ -2,7 +2,7 @@ from setuptools import setup
 
 
 setup(name='resolver_deco',
-      version='1.0.1',
+      version='1.0.2',
       description='Decorator for resolve function arguments',
       # long_description=README,
       classifiers=[
