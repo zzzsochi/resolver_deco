@@ -2,6 +2,14 @@
 Decorator for resolve function arguments
 ========================================
 
+.. image:: https://api.travis-ci.org/zzzsochi/resolver_deco.svg
+  :target:  https://secure.travis-ci.org/zzzsochi/resolver_deco
+  :align: center
+
+.. image:: https://coveralls.io/repos/zzzsochi/resolver_deco/badge.svg
+  :target:  https://coveralls.io/r/zzzsochi/resolver_deco
+  :align: center
+
 -----
 Usage
 -----
