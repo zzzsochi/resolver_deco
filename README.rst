@@ -53,4 +53,4 @@ Tests
 .. code:: shell
 
     $ pip install pytest
-    $ py.test
+    $ py.test tests.py -v
