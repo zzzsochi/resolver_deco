@@ -1,4 +1,5 @@
 import inspect
+from functools import wraps
 
 from zope.dottedname.resolve import resolve
 
@@ -20,6 +21,7 @@ def resolver(*for_resolve, attr_package='__package_for_resolve_deco__'):
         if set(for_resolve) - set(spec):
             raise ValueError('bad arguments')
 
+        @wraps(func)
         def wrapper(*args, **kwargs):
             args = list(args)
 
@@ -41,10 +43,6 @@ def resolver(*for_resolve, attr_package='__package_for_resolve_deco__'):
                     kwargs[kw] = resolve(value, package)
 
             return func(*args, **kwargs)
-
-        wrapper.__name__ = func.__name__
-        wrapper.__doc__ = func.__doc__
-        wrapper.__annotations__ = func.__annotations__
 
         return wrapper
 
